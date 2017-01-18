@@ -6,32 +6,34 @@ import { Component } from '@angular/core';
   <div class="container">
     <h1>Tap Room</h1>
 
-    <div [class]="priorityColor(currentRecipe)" *ngFor="let currentRecipe of recipes">
-      <h4 (click)="isTested(currentRecipe)">{{currentRecipe.title}}</h4>
+    <div>
+      <h4 *ngFor="let currentKeg of kegs">{{currentKeg.name}}</h4>
       <ul>
-        <li>{{currentRecipe.ingredients}}</li>
-        <li>{{currentRecipe.description}}</li>
-        <button (click)="editRecipe(currentRecipe)">Edit!</button>
+        <li>{{currentKeg.brand}}</li>
+        <li>$ {{currentKeg.price}}</li>
+        <li>{{currentKeg.alcoholContent}}</li>
+        <li>{{currentKeg.type}}</li>
+        <button (click)="editKeg(currentKeg)">Edit!</button>
       </ul>
     </div>
-    <div *ngIf="selectedRecipe">
-      <h4>{{selectedRecipe.title}}</h4>
-      <p>Tested? {{selectedRecipe.tested}}</p>
-      <h4>Edit Recipe</h4>
-      <label>Enter Title</label>
-      <input [(ngModel)]="selectedRecipe.title">
+    <div *ngIf="selectedKeg">
+      <h4>{{selectedKeg.name}}</h4>
+      <h4>Edit Keg</h4>
+      <label>Enter Name</label>
+      <input [(ngModel)]="selectedKeg.name">
       <br>
-      <label>Enter Ingredients</label>
-      <input [(ngModel)]="selectedRecipe.ingredients">
+      <label>Enter Brewery</label>
+      <input [(ngModel)]="selectedKeg.brand">
       <br>
-      <label>Enter Description</label>
-      <input [(ngModel)]="selectedRecipe.description">
+      <label>Enter Price</label>
+      <input [(ngModel)]="selectedKeg.price">
       <br>
-      <label>Enter Recipe Priority (3 is high, 1 is low):</label>
+      <label>Enter Alcohol Content</label>
+      <input [(ngModel)]="selectedKeg.alcoholContent">
       <br>
-      <input type="radio" [(ngModel)]="selectedRecipe.priority" [value]="1">1 (Low Priority)<br>
-      <input type="radio" [(ngModel)]="selectedRecipe.priority" [value]="2">2 (Medium Priority)<br>
-      <input type="radio" [(ngModel)]="selectedRecipe.priority" [value]="3">3 (High Priority)
+      <label>Enter Beer Style</label>
+      <input [(ngModel)]="selectedKeg.style">
+      <br>
       <button (click)="finishedEditing()">Done</button>
     </div>
   </div>
@@ -39,37 +41,21 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  recipes: Recipe[] = [
-    new Recipe ("Meatballs", "Beef, Veal, love", "pat them together and cook", 1),
-    new Recipe ("Fluffy French Toast", "Bread, Eggs, Syrup, Half and Half, Oil, Flour, Cinnamon", "Fry it up, man", 3),
-    new Recipe ("Cinnamon Rolls", "Flour, Milk, Yeast, Sugar, Cinnamon, Raisins, Walnuts", "Bake it up, yo", 2)
+  kegs: Keg[] = [
+    new Keg ("Java the Hop", "Fort George", 5, 7, "IPA"),
+    new Keg ("IRA", "Double Mountain", 4, 6, "India Red Ale"),
+    new Keg ("RPM", "Boneyard Beer", 5, 6, "IPA")
   ];
-  selectedRecipe = null;
-  editRecipe(clickedRecipe) {
-    this.selectedRecipe = clickedRecipe;
+  selectedKeg = null;
+  editKeg(clickedKeg) {
+    this.selectedKeg = clickedKeg;
   }
   finishedEditing() {
-    this.selectedRecipe = null;
-  }
-  isTested(clickedRecipe: Recipe) {
-    if(clickedRecipe.tested === true){
-      alert("You've tried this one!");
-    } else
-      alert("You haven't tried this recipe yet!");
-  }
-
-  priorityColor(currentRecipe) {
-    if (currentRecipe.priority === 3){
-      return "bg-danger";
-    } else if (currentRecipe.priority === 2){
-      return "bg-warning";
-    } else {
-      return "bg-success";
-    }
+    this.selectedKeg = null;
   }
 }
 
-export class Recipe {
-  public tested: boolean = false;
-  constructor(public title: string, public ingredients: string, public description: string, public priority: number) { }
+export class Keg {
+  public pints: number = 124;
+  constructor(public name: string, public brand: string, public price: number, public alcoholContent: number, public style: string) { }
 }
