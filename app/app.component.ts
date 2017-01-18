@@ -6,13 +6,13 @@ import { Component } from '@angular/core';
   <div class="container">
     <h1>Tap Room</h1>
 
-    <div>
-      <h4 *ngFor="let currentKeg of kegs">{{currentKeg.name}}</h4>
+    <div *ngFor="let currentKeg of kegs">
+      <h4>{{currentKeg.name}}</h4>
       <ul>
         <li>{{currentKeg.brand}}</li>
         <li>$ {{currentKeg.price}}</li>
-        <li>{{currentKeg.alcoholContent}}</li>
-        <li>{{currentKeg.type}}</li>
+        <li>{{currentKeg.alcoholContent}} %</li>
+        <li>{{currentKeg.style}}</li>
         <button (click)="editKeg(currentKeg)">Edit!</button>
       </ul>
     </div>
