@@ -8,8 +8,8 @@ import { Keg } from './keg.model';
     <h4>{{currentKeg.name}}</h4>
     <ul>
       <li>{{currentKeg.brand}}</li>
-      <li>$ {{currentKeg.price}}</li>
-      <li>{{currentKeg.alcoholContent}} %</li>
+      <li>\${{currentKeg.price}}</li>
+      <li><span [class]="highAlcoholContent(currentKeg)">{{currentKeg.alcoholContent}}%</span></li>
       <li>{{currentKeg.style}}</li>
       <li [class]="kegLow(currentKeg)">Pints left: {{currentKeg.pints}}</li>
       <button (click)="editButtonHasBeenClicked(currentKeg)">Edit Keg!</button>
@@ -40,4 +40,11 @@ export class KegListComponent {
       return "bg-info";
     }
   }
+
+  highAlcoholContent(currentKeg){
+    if (currentKeg.alcoholContent >= 7){
+      return "strongBooze";
+    }
+  }
+
 }
