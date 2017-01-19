@@ -11,7 +11,7 @@ import { Keg } from './keg.model';
       <li>$ {{currentKeg.price}}</li>
       <li>{{currentKeg.alcoholContent}} %</li>
       <li>{{currentKeg.style}}</li>
-      <li>Pints left: {{currentKeg.pints}}</li>
+      <li [class]="kegLow(currentKeg)">Pints left: {{currentKeg.pints}}</li>
       <button (click)="editButtonHasBeenClicked(currentKeg)">Edit Keg!</button>
       <button (click)="pourPintButtonHasBeenClicked(currentKeg)">Pour Pint</button>
     </ul>
@@ -33,4 +33,11 @@ export class KegListComponent {
   }
   // filterByFullness: number = currentKeg.pints;
 
+  kegLow(currentKeg){
+    if (currentKeg.pints <= 10){
+      return "bg-danger";
+    } else {
+      return "bg-info";
+    }
+  }
 }
