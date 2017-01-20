@@ -3,3 +3,28 @@
   font-weight: bolder;
   color: tomato;
 }
+
+h1 {
+  font-family: 'Bungee Shade', cursive;
+  font-size: 75;
+}
+
+h4 {
+  font-family:monospace;
+  font-size: 30;
+}
+
+.well {
+  max-width: 33vw;
+  background-color: rgba(211, 211, 211, .4);
+}
+
+.well li {
+  font-size: 20;
+  font-family: monospace;
+}
+
+body {
+  background-image: url("../../resources/img/beachbeer2.jpg");
+  background-size: auto;
+}

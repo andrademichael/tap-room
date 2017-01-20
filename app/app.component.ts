@@ -5,12 +5,12 @@ import { Keg } from './keg.model';
   selector: 'app-root',
   template: `
   <div class="container">
-    <h1>Tap Room</h1>
+    <h1>Tropical Tap Room</h1>
     <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)" (pintClickSender)="pourPint($event)"></keg-list>
     <hr>
     <edit-keg [childSelectedKeg]="selectedKeg"
     (doneButtonClickedSender)="finishedEditing()"></edit-keg>
-    <hr>
+    <br>
     <new-keg (newKegSender)="addKeg($event)"></new-keg>
   </div>
   `

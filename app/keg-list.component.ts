@@ -4,16 +4,17 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'keg-list',
   template: `
-  <div *ngFor="let currentKeg of childKegList">
+  <div class="well" *ngFor="let currentKeg of childKegList">
     <h4>{{currentKeg.name}}</h4>
     <ul>
       <li>{{currentKeg.brand}}</li>
       <li>\${{currentKeg.price}}</li>
       <li><span [class]="highAlcoholContent(currentKeg)">{{currentKeg.alcoholContent}}%</span></li>
       <li>{{currentKeg.style}}</li>
-      <li [class]="kegLow(currentKeg)">Pints left: {{currentKeg.pints}}</li>
-      <button (click)="editButtonHasBeenClicked(currentKeg)">Edit Keg!</button>
-      <button (click)="pourPintButtonHasBeenClicked(currentKeg)">Pour Pint</button>
+      <li><span [class]="kegLow(currentKeg)">Pints left: {{currentKeg.pints}}</span></li>
+      <br>
+      <button class="btn btn-primary" (click)="editButtonHasBeenClicked(currentKeg)">Edit Keg!</button>
+      <button class="btn btn-info" (click)="pourPintButtonHasBeenClicked(currentKeg)">Pour Pint</button>
     </ul>
   </div>
   `
@@ -36,9 +37,7 @@ export class KegListComponent {
   kegLow(currentKeg){
     if (currentKeg.pints <= 10){
       return "bg-danger";
-    } else {
-      return "bg-info";
-    }
+    } 
   }
 
   highAlcoholContent(currentKeg){
